@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="manage">
+    <head>
+        <meta charset="utf-8" />
+        <title>Manage</title>
+        <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+    </head>
+    <body>
+    <div class="container" ng-controller="manageCtrl">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                    <div class="login-page">
+                        <div class="form">
+
+                            <!--Manager Login-->
+                            <form class="login-form" method="POST" id="login-form" role="form">
+                                <div class="form-group">
+                                    <input type="text" ng-model="managername" tabindex="1" class="form-control" placeholder="Manager Name" name="managername">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" ng-model="password" tabindex="2" placeholder="Password" name="password">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <button type="button" id="login-submit" tabindex="4" class="form-control" ng-click="check_mng_pwd()">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="massage alert alert-warning" ng-if="msg && msg!='ok'">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>警告！</strong>{{msg}}
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+        <script type="text/javascript">
+            var app = angular.module('manage', []);
+            app.controller('manageCtrl', function ($scope, $http, $timeout) {
+
+                //Login
+                $scope.check_mng_pwd = function () {
+                    var data = JSON.stringify({
+                        managername: $scope.managername,
+                        password: $scope.password
+                    });
+                    $http.post("/manager/login", data)
+                        .then(
+                        function (res) {
+                            if(res.data.msg=='ok') {
+                                window.location.href='/viewUserInformation.html';
+                            }else{
+                                $scope.msg=res.data.msg;
+                            }
+                        },
+                            function (err) {
+                            $scope.msg = err.data;
+                        });
+
+                };
+            });
+        </script>
+
+    
+    </body>
+</html>

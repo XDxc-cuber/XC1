@@ -1,0 +1,111 @@
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <div class="col-md-offset-9">
+            <button type="submit" class="btn btn-default" ng-click="show()">显示所有用户注册信息</button>
+            <button type="submit" class="btn btn-default" ng-click="showlog()">显示用户操作日志</button>
+        </div>
+    </div>
+
+</form>
+
+<!--显示查询结果-->
+<div ng-show="isisshowresult">
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="cardLayout">
+                <td>用户名</td>
+                <td>密码</td>
+                <td>注册时间</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="(key, item) in items">
+            <td>{{index+key}}</td>
+            <td>{{item.username}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.registertime}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div class="row">
+<!--        <div class="form-group">-->
+        <div class="pull-left" style="margin-top: 12px;">
+            <button type="submit" class="btn btn-primary" ng-click="searchsortASC()" >注册时间升序</button>
+            <button type="submit" class="btn btn-primary" ng-click="searchsortDESC()">注册时间降序</button>
+        </div>
+<!--        </div>-->
+        <div class="pull-right">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a ng-click="Previous()" role="button"><span role="button">上一页</span></a>
+                    </li>
+                    <li ng-repeat="page in pageList" ng-class="{active:isActivePage(page)}" role="button">
+                        <a ng-click="selectPage(page)" >{{ page }}</a>
+                    </li>
+                    <li>
+                        <a ng-click="Next()" role="button"><span role="button">下一页</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div ng-show="isisisshowresult">
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="cardLayout">
+                <td>编号</td>
+                <td>用户名</td>
+                <td>请求时间</td>
+                <td>请求方式</td>
+                <td>请求网址</td>
+                <td>状态</td>
+                <td>地址</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="(key, item) in items">
+            <td>{{index+key}}</td>
+            <td>{{item.username}}</td>
+            <td>{{item.request_time}}</td>
+            <td>{{item.request_method}}</td>
+            <td>{{item.request_url}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.remote_addr}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div class="row">
+<!--        <div class="form-group">-->
+        <div class="pull-left" style="margin-top: 12px;">
+            <button type="submit" class="btn btn-primary" ng-click="searchsortASC()" >操作时间升序</button>
+            <button type="submit" class="btn btn-primary" ng-click="searchsortDESC()">操作时间降序</button>
+        </div>
+<!--        </div>-->
+        <div class="pull-right">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a ng-click="Previous()" role="button"><span role="button">上一页</span></a>
+                    </li>
+                    <li ng-repeat="page in pageList" ng-class="{active:isActivePage(page)}" role="button">
+                        <a ng-click="selectPage(page)" >{{ page }}</a>
+                    </li>
+                    <li>
+                        <a ng-click="Next()" role="button"><span role="button">下一页</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

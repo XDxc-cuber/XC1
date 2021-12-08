@@ -1,0 +1,57 @@
+<html ng-app="competition">
+    <head>
+        <meta charset="utf-8">
+        <title>NBA Competitions</title>
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
+        <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+    
+        <script src="javascripts/competition.js" type="text/javascript"></script>
+    
+    </head>
+    <body ng-controller="competition_Ctrl" ng-init="isShow=false">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Competitions</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a ng-click="showSearch()">检索</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">图片<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="histogram()">柱状图</a></li>
+                            <li><a ng-click="pie()">饼状图</a></li>
+                            <li><a ng-click="line()">折线图</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">账号管理<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">账号</li>
+                            <li><a ng-click="logout()">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+    
+            </div>
+    
+        </div>
+    
+    </nav>
+    <!--    所有的图片都绘制在main1位置-->
+    <span ng-hide="isShow" id="main1" style="width: 1000px;height:600px;position:fixed; top:70px;left:80px"></span>
+    
+    <div ng-show="isShow" style="width: 1300px;position:relative; top:70px;left: 80px">
+        <!--    查询页面-->
+        <div ng-include="'search.html'"></div>
+    
+    </div>
+    </body>
+    
+    </html>
+    

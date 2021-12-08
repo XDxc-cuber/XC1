@@ -1,0 +1,112 @@
+<form class="form-horizontal" role="form">
+    <div class="row" style="margin-bottom: 10px;">
+        <label class="col-lg-2 control-label">主场队伍</label>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="主场队伍" ng-model="$parent.team">
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px;">
+        <label class="col-lg-2 control-label">客场队伍</label>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="客场队伍" ng-model="$parent.oppo">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-9">
+            <button type="submit" class="btn btn-default" ng-click="search()">查询</button>
+        </div>
+    </div>
+
+</form>
+
+<!--显示查询结果-->
+<div ng-show="isisshowresult">
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="cardLayout">
+                <td>序号</td>
+                <td>队伍</td>
+                <td>场1</td>
+                <td>队伍得分</td>
+                <td>队伍总战绩</td>
+                <td>对手</td>
+                <td>场2</td>
+                <td>对手得分</td>
+                <td>对手总战绩</td>
+                <td>比赛时间</td>
+                <td>耗时</td>
+                <td>地点</td>
+                <td>观众数</td>
+                <td>投篮</td>
+                <td>3分</td>
+                <td>罚球</td>
+                <td>前场</td>
+                <td>后场</td>
+                <td>篮板</td>
+                <td>助攻</td>
+                <td>犯规</td>
+                <td>抢断</td>
+                <td>失误</td>
+                <td>封盖</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="(key, item) in items">
+            <td>{{index+key}}</td>
+            <td>{{item.team}}</td>
+            <td>{{item.ground}}</td>
+            <td>{{item.scores}}</td>
+            <td>{{item.record}}</td>
+            <td>{{item.oppo}}</td>
+            <td>{{item.ground_op}}</td>
+            <td>{{item.opScores}}</td>
+            <td>{{item.opRecord}}</td>
+            <td>{{item.time}}</td>
+            <td>{{item.timeCost}}</td>
+            <td>{{item.location}}</td>
+            <td>{{item.numsOfAd}}</td>
+            <td>{{item.shoot}}</td>
+            <td>{{item.three_point}}</td>
+            <td>{{item.penalty}}</td>
+            <td>{{item.frontcourt}}</td>
+            <td>{{item.backcourt}}</td>
+            <td>{{item.backboard}}</td>
+            <td>{{item.assist}}</td>
+            <td>{{item.foul}}</td>
+            <td>{{item.steal}}</td>
+            <td>{{item.mistake}}</td>
+            <td>{{item.cover}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div class="row">
+<!--        <div class="form-group">-->
+        <div class="pull-left" style="margin-top: 12px;">
+            <button type="submit" class="btn btn-primary" ng-click="searchsortASC()" >比赛时间升序</button>
+            <button type="submit" class="btn btn-primary" ng-click="searchsortDESC()">比赛时间降序</button>
+        </div>
+<!--        </div>-->
+        <div class="pull-right">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a ng-click="Previous()" role="button"><span role="button">上一页</span></a>
+                    </li>
+                    <li ng-repeat="page in pageList" ng-class="{active:isActivePage(page)}" role="button">
+                        <a ng-click="selectPage(page)" >{{ page }}</a>
+                    </li>
+                    <li>
+                        <a ng-click="Next()" role="button"><span role="button">下一页</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
